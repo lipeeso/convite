@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convite</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            position: relative;
+        }
+
+        .container {
+            text-align: center;
+            position: relative;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        #options {
+            margin: 20px 0;
+        }
+
+        button {
+            font-size: 16px;
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            position: relative;
+            background-color: #4CAF50;
+            color: white;
+            transition: background-color 0.3s ease;
+        }
+
+        #yes-btn {
+            background-color: #4CAF50;
+        }
+
+        #no-btn {
+            background-color: #f44336;
+        }
+
+        button:hover {
+            opacity: 0.8;
+        }
+
+        #video-container {
+            margin-top: 20px;
+            display: none;
+        }
+
+        #video-container iframe {
+            width: 100%;
+            max-width: 560px;
+            height: 315px;
+            border: none;
+        }
+
+        @media (max-width: 600px) {
+            button {
+                font-size: 14px;
+                padding: 8px 16px;
+            }
+
+            #video-container iframe {
+                height: 200px;
+            }
+
+            h1, h2 {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Você aceita ter um dia inesquecível comigo?</h1>
+        <h2>Este convite é irrecusável!</h2>
+        <div id="options">
+            <button id="yes-btn">Sim</button>
+            <button id="no-btn">Não</button>
+        </div>
+        <div id="video-container">
+            <iframe src="https://www.youtube.com/embed/V0q2fclc2CA" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const noButton = document.getElementById('no-btn');
+            const videoContainer = document.getElementById('video-container');
+            const yesButton = document.getElementById('yes-btn');
+
+            function moveNoButton() {
+                const container = document.querySelector('.container');
+                const maxX = container.clientWidth - noButton.clientWidth;
+                const maxY = container.clientHeight - noButton.clientHeight;
+                const randomX = Math.random() * maxX;
+                const randomY = Math.random() * maxY;
+
+                noButton.style.position = 'absolute';
+                noButton.style.left = `${randomX}px`;
+                noButton.style.top = `${randomY}px`;
+            }
+
+            noButton.addEventListener('click', moveNoButton);
+
+            yesButton.addEventListener('click', () => {
+                videoContainer.style.display = 'block';
+                // Optional: Scroll to the video container if needed
+                videoContainer.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+    </script>
+</body>
+</html>
